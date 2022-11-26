@@ -1,0 +1,16 @@
+.navbar {
+  background: #3a0b48;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  height: 124px;
+  padding-block: 32px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar h1 {
+  color: rgba(255, 255, 255, 1);
+  font-size: 40px;
+  font-weight: 700;
+}
