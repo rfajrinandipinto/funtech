@@ -56,7 +56,7 @@ const ScheduleDetail = () => {
           + Tambah Mata Kuliah
         </Button>
       </div>
-      <div className="main">{data !== null ? <img src="../public/todo-empty-state.png" alt="" data-cy="todo-empty-state" /> : ""}</div>
+      <div className="main">{data === null ? <img src="../public/todo-empty-state.png" alt="" data-cy="todo-empty-state" /> : ""}</div>
     </div>
   );
 };
