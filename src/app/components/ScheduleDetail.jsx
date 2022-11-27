@@ -62,9 +62,9 @@ const ScheduleDetail = () => {
         ) : (
           data.data.map((data, index) => {
             return (
-              <div className="sch-container" data-cy="card-item-title">
+              <div className="sch-container">
                 {" "}
-                <p>{data.title}</p>
+                <p data-cy="card-item-title">{data.title}</p>
               </div>
             );
           })
