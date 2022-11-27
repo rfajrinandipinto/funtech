@@ -131,7 +131,7 @@ const Schedule = () => {
       </Button>
       <div className="schedule-list">
         <div className="schedule-day">
-          <a href="detail">
+          <a href="detail/monday">
             <div className="schedule-container schedule-day-senin" data-cy="card-day">
               <div class="title-card">
                 <h3 data-cy="card-title-Senin">Senin</h3>

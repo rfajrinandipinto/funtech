@@ -7,7 +7,7 @@ import Detail from "./app/pages/Detail";
 import { ReactSession } from "react-client-session";
 
 function App() {
-  ReactSession.setStoreType("LocalStorage");
+  ReactSession.setStoreType("sessionStorage");
 
   return (
     <div className="App">

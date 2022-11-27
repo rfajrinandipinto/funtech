@@ -8,7 +8,6 @@ const Detail = () => {
   return (
     <div>
       <Navbar content="home"></Navbar>
-      <ScheduleDetail></ScheduleDetail>
     </div>
   );
 };
