@@ -63,11 +63,15 @@ const Schedule = () => {
 
       setList({ monday: listMonday.data, tuesday: listTuesday.data, wednesday: listWednesday.data, thursday: listThursday.data, friday: listFriday.data });
       setData(listDay.data.data);
-      console.log(list.monday.data);
+      setLoading(false);
     };
 
     fetchData();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container">
@@ -221,6 +225,7 @@ const Schedule = () => {
           </Typography>
 
           <FormControl
+            htmlFor="days"
             fullWidth
             data-cy="form-day"
             sx={{
@@ -251,7 +256,7 @@ const Schedule = () => {
             </select>
           </FormControl>
           <div className="btn-container">
-            <Button variant="contained" id="btn-save" onClick={handleOpen} disabled={submitable === false || matkul === null} data-cy="btn-submit">
+            <Button variant="contained" id="btn-save" onClick={handleClose} disabled={submitable === false} data-cy="btn-submit">
               Simpan
             </Button>
           </div>
