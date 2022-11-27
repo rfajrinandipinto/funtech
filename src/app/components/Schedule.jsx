@@ -216,12 +216,13 @@ const Schedule = () => {
             variant="outlined"
             placeholder="Masukkan Mata Kuliah"
           />
-          <Typography id="modal-modal-description-2" className="modal-title">
+          <Typography id="modal-modal-description-2" className="modal-title" htmlFor="days">
             Pilih Hari
           </Typography>
 
           <FormControl
             fullWidth
+            data-cy="form-day"
             sx={{
               "& .MuiOutlinedInput-root": {
                 marginInline: "35px",
@@ -241,7 +242,7 @@ const Schedule = () => {
               },
             }}
           >
-            <select name="hari" id="cars" value={hari} onChange={handleChangeHari} data-cy="form-day">
+            <select name="hari" id="days" value={hari} onChange={handleChangeHari}>
               <option value={"monday"}>Senin</option>
               <option value={"tuesday"}>Selasa</option>
               <option value={"wednesday"}>Rabu</option>
