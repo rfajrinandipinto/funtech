@@ -289,7 +289,6 @@ const Schedule = () => {
             <FormControl
               htmlFor="days"
               fullWidth
-              data-cy="form-day"
               sx={{
                 "& .MuiOutlinedInput-root": {
                   marginInline: "35px",
@@ -309,7 +308,7 @@ const Schedule = () => {
                 },
               }}
             >
-              <select name="hari" id="days" value={hari} onChange={handleChangeHari}>
+              <select name="hari" id="days" value={hari} onChange={handleChangeHari} data-cy="form-day">
                 <option value={"monday"}>Senin</option>
                 <option value={"tuesday"}>Selasa</option>
                 <option value={"wednesday"}>Rabu</option>
