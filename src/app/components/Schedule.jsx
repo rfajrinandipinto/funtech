@@ -282,40 +282,21 @@ const Schedule = () => {
               variant="outlined"
               placeholder="Masukkan Mata Kuliah"
             />
-            <Typography id="modal-modal-description-2" className="modal-title" htmlFor="days">
+            {/* <Typography id="modal-modal-description-2" className="modal-title" htmlFor="days">
               Pilih Hari
-            </Typography>
+            </Typography> */}
 
-            <FormControl
-              htmlFor="days"
-              fullWidth
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  marginInline: "35px",
-                },
-                "& .MuiOutlinedInput-root.Mui-focused": {
-                  "& > fieldset": {
-                    borderColor: "rgba(217, 1, 156, 1)",
-                  },
-                  background: "rgba(255, 255, 255, 1)",
-                },
-                "& .MuiFormHelperText-root": {
-                  fontSize: "16px",
-                  fontWeight: "400",
-                  display: "flex",
-                  alignItems: "center",
-                  marginInline: "0",
-                },
-              }}
-            >
-              <select name="hari" id="days" value={hari} onChange={handleChangeHari} data-cy="form-day">
-                <option value={"monday"}>Senin</option>
-                <option value={"tuesday"}>Selasa</option>
-                <option value={"wednesday"}>Rabu</option>
-                <option value={"thursday"}>Kamis</option>
-                <option value={"friday"}>Jumat</option>
-              </select>
-            </FormControl>
+            <label for="days" data-cy="form-day">
+              Pilih Hari
+            </label>
+
+            <select name="hari" id="days" value={hari} onChange={handleChangeHari}>
+              <option value={"monday"}>Senin</option>
+              <option value={"tuesday"}>Selasa</option>
+              <option value={"wednesday"}>Rabu</option>
+              <option value={"thursday"}>Kamis</option>
+              <option value={"friday"}>Jumat</option>
+            </select>
             <div className="btn-container">
               <Button variant="contained" id="btn-save" disabled={submitable === false} data-cy="btn-submit" type="submit">
                 Simpan
