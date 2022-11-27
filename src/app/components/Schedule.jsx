@@ -19,30 +19,32 @@ const Schedule = () => {
   const [data, setData] = useState({ monday: null, tuesday: null, wednesday: null, thursday: null, friday: null });
   const [list, setList] = useState({ monday: null, tuesday: null, wednesday: null, thursday: null, friday: null });
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
+
+  const [submitable, setSubmitable] = useState(false);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [matkul, setMatkul] = React.useState("");
+  const [matkul, setMatkul] = React.useState(null);
   const [hari, setHari] = React.useState("");
 
   const handleChangeMatkul = (event) => {
-    if (matkul === null) {
-      setError("Format email tidak sesuai");
+    if (event.target.value !== "" && hari !== "") {
+      setSubmitable(true);
     } else {
-      setError(null);
+      setSubmitable(false);
     }
 
     setMatkul(event.target.value);
   };
 
   const handleChangeHari = (event) => {
-    if (hari === null) {
-      setError("Format email tidak sesuai");
+    if (event.target.value !== "" && matkul !== "") {
+      setSubmitable(true);
     } else {
-      setError(null);
+      setSubmitable(false);
     }
 
     setHari(event.target.value);
@@ -174,9 +176,11 @@ const Schedule = () => {
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box className="modal-box">
           <div className="modal-box-title">
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography id="modal-modal-title" variant="h6" component="h2" data-cy="form-add">
               Buat Jadwal Kuliah
-              <Close onClick={handleClose} data-cy="close-modal"></Close>
+              <Button onClick={handleClose} data-cy="close-modal">
+                <Close></Close>
+              </Button>
             </Typography>
           </div>
 
@@ -206,7 +210,9 @@ const Schedule = () => {
               },
             }}
             id="outlined-basic"
-            name="email"
+            name="matkul"
+            value={matkul}
+            onChange={handleChangeMatkul}
             variant="outlined"
             placeholder="Masukkan Mata Kuliah"
           />
@@ -215,7 +221,6 @@ const Schedule = () => {
           </Typography>
           <FormControl
             fullWidth
-            data-cy="form-add"
             sx={{
               "& .MuiOutlinedInput-root": {
                 marginInline: "35px",
@@ -235,7 +240,14 @@ const Schedule = () => {
               },
             }}
           >
-            <Select id="demo-simple-select" value={hari} onChange={handleChangeHari} data-cy="form-day">
+            <Select
+              id="demo-simple-select"
+              value={hari}
+              onChange={handleChangeHari}
+              inputProps={{
+                "data-cy": "form-day",
+              }}
+            >
               <MenuItem value={"monday"}>Senin</MenuItem>
               <MenuItem value={"tuesday"}>Selasa</MenuItem>
               <MenuItem value={"wednesday"}>Rabu</MenuItem>
@@ -244,7 +256,7 @@ const Schedule = () => {
             </Select>
           </FormControl>
           <div className="btn-container">
-            <Button data-cy="btn-create-schedule" variant="contained" id="btn-save" onClick={handleOpen} disabled={error !== null} data-cy="btn-submit">
+            <Button variant="contained" id="btn-save" onClick={handleOpen} disabled={submitable === false || matkul === null} data-cy="btn-submit">
               Simpan
             </Button>
           </div>
