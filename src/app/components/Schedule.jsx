@@ -298,11 +298,9 @@ const Schedule = () => {
               <option value={"friday"}>Jumat</option>
             </datalist>
 
-            <div className="btn-container">
-              <Button variant="contained" id="btn-save" disabled={submitable === false} data-cy="btn-submit" type="submit">
-                Simpan
-              </Button>
-            </div>
+            <Button variant="contained" id="btn-save" disabled={submitable === false} data-cy="btn-submit" type="submit">
+              Simpan
+            </Button>
           </Box>
         </form>
       </Modal>
