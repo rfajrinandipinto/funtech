@@ -57,7 +57,9 @@ const Chekinform = () => {
       <form className="email-form" onSubmit={handleSubmit}>
         <label htmlFor="outlined-basic">Email</label>
         <TextField
-          data-cy="input-email"
+          inputProps={{
+            "data-cy": "input-email",
+          }}
           sx={{
             "& .MuiOutlinedInput-root": {
               background: "rgba(244, 244, 244, 1)",
