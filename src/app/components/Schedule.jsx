@@ -241,7 +241,7 @@ const Schedule = () => {
               },
             }}
           >
-            <select name="hari" id="cars" value={hari} onChange={handleChangeHari}>
+            <select name="hari" id="cars" value={hari} onChange={handleChangeHari} data-cy="form-day">
               <option value={"monday"}>Senin</option>
               <option value={"tuesday"}>Selasa</option>
               <option value={"wednesday"}>Rabu</option>
