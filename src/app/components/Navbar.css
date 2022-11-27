@@ -14,3 +14,21 @@
   font-size: 40px;
   font-weight: 700;
 }
+
+.nav-content {
+  padding-inline: 220px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#btnLogout {
+  background-color: rgba(217, 1, 156, 1);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  text-transform: none;
+}

@@ -48,3 +48,8 @@ label {
 .error-text {
   display: flex;
 }
+
+.email-form {
+  display: flex;
+  flex-direction: column;
+}

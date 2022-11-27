@@ -6,7 +6,7 @@ import Chekinform from "../components/Chekinform";
 const Checkin = () => {
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar content="checkin"></Navbar>
       <Chekinform></Chekinform>
     </div>
   );
