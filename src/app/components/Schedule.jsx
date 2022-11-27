@@ -36,7 +36,7 @@ const Schedule = () => {
   const [hari, setHari] = React.useState("");
 
   const handleChangeMatkul = (event) => {
-    if (event.target.value !== "" && hari !== "") {
+    if (event.target.value !== "" && hari !== "" && event.target.value !== null && hari !== null) {
       setSubmitable(true);
     } else {
       setSubmitable(false);
@@ -47,6 +47,8 @@ const Schedule = () => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
+    handleClose();
+    setSubmitable;
     try {
       let res = await fetch("https://getjadwal.api.devcode.gethired.id/schedule?email=" + email, {
         method: "POST",
@@ -87,7 +89,7 @@ const Schedule = () => {
   };
 
   const handleChangeHari = (event) => {
-    if (event.target.value !== "" && matkul !== "") {
+    if (event.target.value !== "" && matkul !== "" && event.target.value !== null && matkul !== null) {
       setSubmitable(true);
     } else {
       setSubmitable(false);
