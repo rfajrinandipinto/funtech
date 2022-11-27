@@ -7,6 +7,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import Button from "@mui/material/Button";
 import UserProfile from "./UserProfile";
 import { useEffect } from "react";
+import { ReactSession } from "react-client-session";
 
 const Chekinform = () => {
   const [email, setEmail] = useState("");
@@ -43,6 +44,7 @@ const Chekinform = () => {
       if (res.status === 200) {
         console.log("berhasil");
         UserProfile.setEmail(email);
+        ReactSession.set("email", email);
         navigate("/home");
       } else {
         console.log(email);

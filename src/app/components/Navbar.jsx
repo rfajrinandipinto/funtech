@@ -3,12 +3,13 @@ import "./Navbar.css";
 import { Button } from "@mui/material";
 import UserProfile from "./UserProfile";
 import { useState, useEffect } from "react";
+import { ReactSession } from "react-client-session";
 
 const Navbar = (props) => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    const email = JSON.parse(localStorage.getItem("email"));
+    const email = ReactSession.get("email");
     if (email) {
       setEmail(email);
     }

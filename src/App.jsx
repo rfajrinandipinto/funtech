@@ -4,8 +4,11 @@ import Checkin from "./app/pages/Checkin";
 import Home from "./app/pages/Home";
 import "./App.css";
 import Detail from "./app/pages/Detail";
+import { ReactSession } from "react-client-session";
 
 function App() {
+  ReactSession.setStoreType("sessionStorage");
+
   return (
     <div className="App">
       <BrowserRouter>
