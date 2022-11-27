@@ -82,7 +82,6 @@ const Chekinform = () => {
           onChange={handleChange}
           variant="outlined"
           placeholder="Masukkan email anda"
-          contenteditable="true"
           error={error !== null}
           helperText={
             error !== null ? (
