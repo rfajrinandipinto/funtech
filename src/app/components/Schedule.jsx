@@ -299,7 +299,7 @@ const Schedule = () => {
             </datalist>
 
             <div className="btn-container">
-              <Button variant="contained" id="btn-save" disabled={hari === "" || matkul === ""} data-cy="btn-submit" type="submit">
+              <Button variant="contained" id="btn-save" disabled={submitable === false} data-cy="btn-submit" type="submit">
                 Simpan
               </Button>
             </div>
