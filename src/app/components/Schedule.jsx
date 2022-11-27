@@ -46,7 +46,6 @@ const Schedule = () => {
   };
 
   let handleSubmit = async (e) => {
-    handleClose();
     e.preventDefault();
     try {
       let res = await fetch("https://getjadwal.api.devcode.gethired.id/schedule?email=" + email, {
