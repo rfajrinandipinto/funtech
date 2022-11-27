@@ -25,15 +25,19 @@ const Schedule = () => {
   const [email, setEmail] = useState("");
 
   const [submitable, setSubmitable] = useState(false);
+  const [matkul, setMatkul] = React.useState("");
+  const [hari, setHari] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setHari(null);
+    setMatkul(null);
+    setSubmitable(false);
+  };
 
   const navigate = useNavigate();
-
-  const [matkul, setMatkul] = React.useState("");
-  const [hari, setHari] = React.useState("");
 
   const handleChangeMatkul = (event) => {
     if (event.target.value !== "" && hari !== "" && event.target.value !== null && hari !== null) {
@@ -48,6 +52,7 @@ const Schedule = () => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     handleClose();
+    console.log(hari);
     setSubmitable;
     try {
       let res = await fetch("https://getjadwal.api.devcode.gethired.id/schedule?email=" + email, {
