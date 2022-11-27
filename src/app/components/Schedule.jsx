@@ -244,7 +244,7 @@ const Schedule = () => {
               id="demo-simple-select"
               value={hari}
               onChange={handleChangeHari}
-              children={{
+              inputProps={{
                 "data-cy": "form-day",
               }}
             >
