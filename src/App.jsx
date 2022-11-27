@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Checkin />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/detail/:day" element={<Detail />} />
+          <Route path="/detail" element={<Detail />} />
         </Routes>
       </BrowserRouter>
     </div>
