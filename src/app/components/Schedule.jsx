@@ -219,6 +219,7 @@ const Schedule = () => {
           <Typography id="modal-modal-description-2" className="modal-title">
             Pilih Hari
           </Typography>
+
           <FormControl
             fullWidth
             sx={{
@@ -240,21 +241,13 @@ const Schedule = () => {
               },
             }}
           >
-            <Select
-              id="demo-simple-select"
-              value={hari}
-              onChange={handleChangeHari}
-              inputProps={{
-                "data-cy": "form-day",
-                id: "input-select",
-              }}
-            >
-              <MenuItem value={"monday"}>Senin</MenuItem>
-              <MenuItem value={"tuesday"}>Selasa</MenuItem>
-              <MenuItem value={"wednesday"}>Rabu</MenuItem>
-              <MenuItem value={"thursday"}>Kamis</MenuItem>
-              <MenuItem value={"friday"}>Jumat</MenuItem>
-            </Select>
+            <select name="hari" id="cars" value={hari} onChange={handleChangeHari}>
+              <option value={"monday"}>Senin</option>
+              <option value={"tuesday"}>Selasa</option>
+              <option value={"wednesday"}>Rabu</option>
+              <option value={"thursday"}>Kamis</option>
+              <option value={"friday"}>Jumat</option>
+            </select>
           </FormControl>
           <div className="btn-container">
             <Button variant="contained" id="btn-save" onClick={handleOpen} disabled={submitable === false || matkul === null} data-cy="btn-submit">
