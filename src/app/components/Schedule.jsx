@@ -245,7 +245,7 @@ const Schedule = () => {
         </div>
       </div>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-        <form onSubmit={handleSubmit} className="modal-form">
+        <form className="modal-form">
           <Box className="modal-box">
             <div className="modal-box-title">
               <Typography id="modal-modal-title" variant="h6" component="h2" data-cy="form-add">
@@ -304,7 +304,7 @@ const Schedule = () => {
               <option value={"friday"}>Jumat</option>
             </datalist>
 
-            <Button variant="contained" id="btn-save" disabled={submitable === false} data-cy="btn-submit" type="submit">
+            <Button variant="contained" id="btn-save" disabled={submitable === false} data-cy="btn-submit" onClick={handleSubmit}>
               Simpan
             </Button>
           </Box>
