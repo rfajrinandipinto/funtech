@@ -54,10 +54,6 @@ const Chekinform = () => {
     }
   };
 
-  useEffect(() => {
-    localStorage.setItem("email", JSON.stringify(email));
-  }, [email]);
-
   return (
     <div className="chekinform">
       <h2 data-cy="text-login">Check In</h2>

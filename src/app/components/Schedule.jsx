@@ -15,6 +15,7 @@ import Select from "@mui/material/Select";
 import CloseIcon from "@mui/icons-material/Close";
 import Close from "@mui/icons-material/Close";
 import { useNavigate } from "react-router";
+import { ReactSession } from "react-client-session";
 
 const Schedule = () => {
   const [data, setData] = useState({ monday: null, tuesday: null, wednesday: null, thursday: null, friday: null });
@@ -97,7 +98,7 @@ const Schedule = () => {
   };
 
   useEffect(() => {
-    const email = JSON.parse(localStorage.getItem("email"));
+    const email = ReactSession.get("email");
     if (email) {
       setEmail(email);
     }
