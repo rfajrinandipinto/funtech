@@ -29,6 +29,7 @@ const Chekinform = () => {
 
       <label htmlFor="outlined-basic">Email</label>
       <TextField
+        data-cy="input-email"
         sx={{
           "& .MuiOutlinedInput-root": {
             background: "rgba(244, 244, 244, 1)",
@@ -65,7 +66,7 @@ const Chekinform = () => {
         }
       />
 
-      <Button variant="contained" id="btnCheck" disabled={error !== null || message == null}>
+      <Button data-cy="btn-login" variant="contained" id="btnCheck" disabled={error !== null || message == null}>
         Mulai Sesi
       </Button>
     </div>
