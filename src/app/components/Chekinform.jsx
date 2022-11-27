@@ -57,9 +57,9 @@ const Chekinform = () => {
         error={error !== null}
         helperText={
           error !== null ? (
-            <>
+            <div data-cy="error-email" className="error-text">
               <ErrorIcon style={{ marginRight: "8px" }}></ErrorIcon> Format email tidak sesuai
-            </>
+            </div>
           ) : (
             ""
           )
