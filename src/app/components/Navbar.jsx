@@ -17,7 +17,7 @@ const Navbar = (props) => {
           <div className="nav-content">
             <h1>GetJadwal</h1>
             <Button variant="contained" id="btnLogout" data-cy="btn-logout">
-              Check Out | {UserProfile.getEmail()}
+              Check out | {UserProfile.getEmail()}
             </Button>
           </div>
         );
