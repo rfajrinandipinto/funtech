@@ -246,6 +246,7 @@ const Schedule = () => {
               onChange={handleChangeHari}
               inputProps={{
                 "data-cy": "form-day",
+                id: "input-select",
               }}
             >
               <MenuItem value={"monday"}>Senin</MenuItem>

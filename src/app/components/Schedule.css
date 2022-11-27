@@ -122,6 +122,6 @@
   justify-content: end;
 }
 
-.css-yf8vq0-MuiSelect-nativeInput {
-  opacity: 1 !important;
+#input-select {
+  opacity: 1;
 }
