@@ -286,19 +286,20 @@ const Schedule = () => {
               Pilih Hari
             </Typography> */}
 
-            <label for="days" data-cy="form-day">
+            <label for="days">
               Pilih Hari
+              <input list="days" name="hari" onChange={handleChangeHari} data-cy="form-day" />
             </label>
-
-            <select name="hari" id="days" value={hari} onChange={handleChangeHari}>
+            <datalist id="days">
               <option value={"monday"}>Senin</option>
               <option value={"tuesday"}>Selasa</option>
               <option value={"wednesday"}>Rabu</option>
               <option value={"thursday"}>Kamis</option>
               <option value={"friday"}>Jumat</option>
-            </select>
+            </datalist>
+
             <div className="btn-container">
-              <Button variant="contained" id="btn-save" disabled={submitable === false} data-cy="btn-submit" type="submit">
+              <Button variant="contained" id="btn-save" disabled={hari === "" || matkul === ""} data-cy="btn-submit" type="submit">
                 Simpan
               </Button>
             </div>
