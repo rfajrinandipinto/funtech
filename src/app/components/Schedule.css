@@ -1,3 +1,6 @@
+a {
+  text-decoration: none;
+}
 .container {
   display: flex;
   padding-inline: 220px;

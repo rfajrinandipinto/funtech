@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding-inline: 220px;
+}
+
+#btn-add-new {
+  background-color: rgba(217, 1, 156, 1);
+  border-radius: 45px;
+  padding: 15px 24px;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  margin-left: auto;
+}

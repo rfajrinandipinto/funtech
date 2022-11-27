@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import ErrorIcon from "@mui/icons-material/Error";
 import Button from "@mui/material/Button";
 import UserProfile from "./UserProfile";
+import { useEffect } from "react";
 
 const Chekinform = () => {
   const [email, setEmail] = useState("");
@@ -50,6 +51,10 @@ const Chekinform = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("email", JSON.stringify(email));
+  }, [email]);
 
   return (
     <div className="chekinform">

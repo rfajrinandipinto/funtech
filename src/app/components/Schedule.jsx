@@ -21,7 +21,7 @@ const Schedule = () => {
   const [list, setList] = useState({ monday: null, tuesday: null, wednesday: null, thursday: null, friday: null });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [email, setEmail] = useState(UserProfile.getEmail());
+  const [email, setEmail] = useState("");
 
   const [submitable, setSubmitable] = useState(false);
 
@@ -97,6 +97,12 @@ const Schedule = () => {
   };
 
   useEffect(() => {
+    const email = JSON.parse(localStorage.getItem("email"));
+    if (email) {
+      setEmail(email);
+    }
+    console.log(UserProfile.getEmail());
+
     const fetchData = async () => {
       const listMonday = await axios(`https://getjadwal.api.devcode.gethired.id/schedule?email=${email}&day=monday`);
       const listTuesday = await axios(`https://getjadwal.api.devcode.gethired.id/schedule?email=${email}&day=tuesday`);
@@ -124,101 +130,111 @@ const Schedule = () => {
       </Button>
       <div className="schedule-list">
         <div className="schedule-day">
-          <div className="schedule-container schedule-day-senin">
-            <div class="title-card" data-cy="card-day">
-              <h3 data-cy="card-title-Senin">Senin</h3>
-              <p data-cy="card-desc-Senin" className={data.monday !== 0 ? "not-null" : ""}>
-                {data.monday !== 0 ? data.monday + " Mata Kuliah" : "Belum ada mata kuliah "}
-              </p>
+          <a href="detail/monday">
+            <div className="schedule-container schedule-day-senin" data-cy="card-day">
+              <div class="title-card">
+                <h3 data-cy="card-title-Senin">Senin</h3>
+                <p data-cy="card-desc-Senin" className={data.monday !== 0 ? "not-null" : ""}>
+                  {data.monday !== 0 ? data.monday + " Mata Kuliah" : "Belum ada mata kuliah "}
+                </p>
+              </div>
+              <div className="list-card">
+                {list.monday !== null
+                  ? list.monday.data.map((data, i) => {
+                      return (
+                        <div className="day-card">
+                          <p>{data.title}</p>
+                        </div>
+                      );
+                    })
+                  : ""}
+              </div>
             </div>
-            <div className="list-card">
-              {list.monday !== null
-                ? list.monday.data.map((data, i) => {
-                    return (
-                      <div className="day-card">
-                        <p>{data.title}</p>
-                      </div>
-                    );
-                  })
-                : ""}
+          </a>
+          <a href="detail/tuesday">
+            <div className="schedule-container schedule-day-selasa">
+              <div class="title-card" data-cy="card-day">
+                <h3 data-cy="card-title-Selasa">Selasa</h3>
+                <p data-cy="card-desc-Selasa" className={data.tuesday !== 0 ? "not-null" : ""}>
+                  {data.tuesday !== 0 ? data.tuesday + " Mata Kuliah" : "Belum ada mata kuliah "}
+                </p>
+              </div>
+              <div className="list-card">
+                {list.tuesday !== null
+                  ? list.tuesday.data.map((data, i) => {
+                      return (
+                        <div className="day-card">
+                          <p>{data.title}</p>
+                        </div>
+                      );
+                    })
+                  : ""}
+              </div>
             </div>
-          </div>
-          <div className="schedule-container schedule-day-selasa">
-            <div class="title-card" data-cy="card-day">
-              <h3 data-cy="card-title-Selasa">Selasa</h3>
-              <p data-cy="card-desc-Selasa" className={data.tuesday !== 0 ? "not-null" : ""}>
-                {data.tuesday !== 0 ? data.tuesday + " Mata Kuliah" : "Belum ada mata kuliah "}
-              </p>
+          </a>
+          <a href="detail/wednesday">
+            <div className="schedule-container schedule-day-rabu">
+              <div class="title-card" data-cy="card-day">
+                <h3 data-cy="card-title-Rabu">Rabu</h3>
+                <p data-cy="card-desc-Rabu" className={data.wednesday !== 0 ? "not-null" : ""}>
+                  {data.wednesday !== 0 ? data.wednesday + " Mata Kuliah" : "Belum ada mata kuliah "}
+                </p>
+              </div>
+              <div className="list-card">
+                {list.wednesday !== null
+                  ? list.wednesday.data.map((data, i) => {
+                      return (
+                        <div className="day-card">
+                          <p>{data.title}</p>
+                        </div>
+                      );
+                    })
+                  : ""}
+              </div>
             </div>
-            <div className="list-card">
-              {list.tuesday !== null
-                ? list.tuesday.data.map((data, i) => {
-                    return (
-                      <div className="day-card">
-                        <p>{data.title}</p>
-                      </div>
-                    );
-                  })
-                : ""}
+          </a>
+          <a href="detail/thursday">
+            <div className="schedule-container schedule-day-kamis">
+              <div class="title-card" data-cy="card-day">
+                <h3 data-cy="card-title-Kamis">Kamis</h3>
+                <p data-cy="card-desc-Kamis" className={data.thursday !== 0 ? "not-null" : ""}>
+                  {data.thursday !== 0 ? data.thursday + " Mata Kuliah" : "Belum ada mata kuliah "}
+                </p>
+              </div>
+              <div className="list-card">
+                {list.thursday !== null
+                  ? list.thursday.data.map((data, i) => {
+                      return (
+                        <div className="day-card">
+                          <p>{data.title}</p>
+                        </div>
+                      );
+                    })
+                  : ""}
+              </div>
             </div>
-          </div>
-          <div className="schedule-container schedule-day-rabu">
-            <div class="title-card" data-cy="card-day">
-              <h3 data-cy="card-title-Rabu">Rabu</h3>
-              <p data-cy="card-desc-Rabu" className={data.wednesday !== 0 ? "not-null" : ""}>
-                {data.wednesday !== 0 ? data.wednesday + " Mata Kuliah" : "Belum ada mata kuliah "}
-              </p>
+          </a>
+          <a href="detail/friday">
+            <div className="schedule-container schedule-day-jumat">
+              <div class="title-card" data-cy="card-day">
+                <h3 data-cy="card-title-Jumat">Jumat</h3>
+                <p data-cy="card-desc-Jumat" className={data.friday !== 0 ? "not-null" : ""}>
+                  {data.friday !== 0 ? data.friday + " Mata Kuliah" : "Belum ada mata kuliah "}
+                </p>
+              </div>
+              <div className="list-card">
+                {list.friday !== null
+                  ? list.friday.data.map((data, i) => {
+                      return (
+                        <div className="day-card">
+                          <p>{data.title}</p>
+                        </div>
+                      );
+                    })
+                  : ""}
+              </div>
             </div>
-            <div className="list-card">
-              {list.wednesday !== null
-                ? list.wednesday.data.map((data, i) => {
-                    return (
-                      <div className="day-card">
-                        <p>{data.title}</p>
-                      </div>
-                    );
-                  })
-                : ""}
-            </div>
-          </div>
-          <div className="schedule-container schedule-day-kamis">
-            <div class="title-card" data-cy="card-day">
-              <h3 data-cy="card-title-Kamis">Kamis</h3>
-              <p data-cy="card-desc-Kamis" className={data.thursday !== 0 ? "not-null" : ""}>
-                {data.thursday !== 0 ? data.thursday + " Mata Kuliah" : "Belum ada mata kuliah "}
-              </p>
-            </div>
-            <div className="list-card">
-              {list.thursday !== null
-                ? list.thursday.data.map((data, i) => {
-                    return (
-                      <div className="day-card">
-                        <p>{data.title}</p>
-                      </div>
-                    );
-                  })
-                : ""}
-            </div>
-          </div>
-          <div className="schedule-container schedule-day-jumat">
-            <div class="title-card" data-cy="card-day">
-              <h3 data-cy="card-title-Jumat">Jumat</h3>
-              <p data-cy="card-desc-Jumat" className={data.friday !== 0 ? "not-null" : ""}>
-                {data.friday !== 0 ? data.friday + " Mata Kuliah" : "Belum ada mata kuliah "}
-              </p>
-            </div>
-            <div className="list-card">
-              {list.friday !== null
-                ? list.friday.data.map((data, i) => {
-                    return (
-                      <div className="day-card">
-                        <p>{data.title}</p>
-                      </div>
-                    );
-                  })
-                : ""}
-            </div>
-          </div>
+          </a>
         </div>
       </div>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
