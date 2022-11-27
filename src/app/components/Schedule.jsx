@@ -14,12 +14,14 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import CloseIcon from "@mui/icons-material/Close";
 import Close from "@mui/icons-material/Close";
+import { useNavigate } from "react-router";
 
 const Schedule = () => {
   const [data, setData] = useState({ monday: null, tuesday: null, wednesday: null, thursday: null, friday: null });
   const [list, setList] = useState({ monday: null, tuesday: null, wednesday: null, thursday: null, friday: null });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [email, setEmail] = useState(UserProfile.getEmail());
 
   const [submitable, setSubmitable] = useState(false);
 
@@ -27,7 +29,9 @@ const Schedule = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [matkul, setMatkul] = React.useState(null);
+  const navigate = useNavigate();
+
+  const [matkul, setMatkul] = React.useState("");
   const [hari, setHari] = React.useState("");
 
   const handleChangeMatkul = (event) => {
@@ -40,6 +44,48 @@ const Schedule = () => {
     setMatkul(event.target.value);
   };
 
+  let handleSubmit = async (e) => {
+    handleClose();
+    e.preventDefault();
+    try {
+      let res = await fetch("https://getjadwal.api.devcode.gethired.id/schedule?email=" + email, {
+        method: "POST",
+        body: JSON.stringify({
+          title: matkul,
+          day: hari,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.status === 201) {
+        console.log("berhasil");
+        refecth();
+      } else {
+        console.log("error");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const refecth = () => {
+    const fetchData = async () => {
+      const listMonday = await axios(`https://getjadwal.api.devcode.gethired.id/schedule?email=${email}&day=monday`);
+      const listTuesday = await axios(`https://getjadwal.api.devcode.gethired.id/schedule?email=${email}&day=tuesday`);
+      const listWednesday = await axios(`https://getjadwal.api.devcode.gethired.id/schedule?email=${email}&day=wednesday`);
+      const listThursday = await axios(`https://getjadwal.api.devcode.gethired.id/schedule?email=${email}&day=thursday`);
+      const listFriday = await axios(`https://getjadwal.api.devcode.gethired.id/schedule?email=${email}&day=friday`);
+      const listDay = await axios(`https://getjadwal.api.devcode.gethired.id/schedule?email=${email}`);
+
+      setList({ monday: listMonday.data, tuesday: listTuesday.data, wednesday: listWednesday.data, thursday: listThursday.data, friday: listFriday.data });
+      setData(listDay.data.data);
+      setLoading(false);
+    };
+
+    fetchData();
+  };
+
   const handleChangeHari = (event) => {
     if (event.target.value !== "" && matkul !== "") {
       setSubmitable(true);
@@ -49,8 +95,6 @@ const Schedule = () => {
 
     setHari(event.target.value);
   };
-
-  const email = UserProfile.getEmail();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -178,89 +222,91 @@ const Schedule = () => {
         </div>
       </div>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-        <Box className="modal-box">
-          <div className="modal-box-title">
-            <Typography id="modal-modal-title" variant="h6" component="h2" data-cy="form-add">
-              Buat Jadwal Kuliah
-              <Button onClick={handleClose} data-cy="close-modal">
-                <Close></Close>
-              </Button>
+        <form onSubmit={handleSubmit} className="modal-form">
+          <Box className="modal-box">
+            <div className="modal-box-title">
+              <Typography id="modal-modal-title" variant="h6" component="h2" data-cy="form-add">
+                Buat Jadwal Kuliah
+                <Button onClick={handleClose} data-cy="close-modal">
+                  <Close></Close>
+                </Button>
+              </Typography>
+            </div>
+
+            <Typography id="modal-modal-description-1" className="modal-title">
+              Mata Kuliah
             </Typography>
-          </div>
-
-          <Typography id="modal-modal-description-1" className="modal-title">
-            Mata Kuliah
-          </Typography>
-          <TextField
-            inputProps={{
-              "data-cy": "form-matkul",
-            }}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                marginInline: "35px",
-              },
-              "& .MuiOutlinedInput-root.Mui-focused": {
-                "& > fieldset": {
-                  borderColor: "rgba(217, 1, 156, 1)",
+            <TextField
+              inputProps={{
+                "data-cy": "form-matkul",
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  marginInline: "35px",
                 },
-                background: "rgba(255, 255, 255, 1)",
-              },
-              "& .MuiFormHelperText-root": {
-                fontSize: "16px",
-                fontWeight: "400",
-                display: "flex",
-                alignItems: "center",
-                marginInline: "0",
-              },
-            }}
-            id="outlined-basic"
-            name="matkul"
-            value={matkul}
-            onChange={handleChangeMatkul}
-            variant="outlined"
-            placeholder="Masukkan Mata Kuliah"
-          />
-          <Typography id="modal-modal-description-2" className="modal-title" htmlFor="days">
-            Pilih Hari
-          </Typography>
-
-          <FormControl
-            htmlFor="days"
-            fullWidth
-            data-cy="form-day"
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                marginInline: "35px",
-              },
-              "& .MuiOutlinedInput-root.Mui-focused": {
-                "& > fieldset": {
-                  borderColor: "rgba(217, 1, 156, 1)",
+                "& .MuiOutlinedInput-root.Mui-focused": {
+                  "& > fieldset": {
+                    borderColor: "rgba(217, 1, 156, 1)",
+                  },
+                  background: "rgba(255, 255, 255, 1)",
                 },
-                background: "rgba(255, 255, 255, 1)",
-              },
-              "& .MuiFormHelperText-root": {
-                fontSize: "16px",
-                fontWeight: "400",
-                display: "flex",
-                alignItems: "center",
-                marginInline: "0",
-              },
-            }}
-          >
-            <select name="hari" id="days" value={hari} onChange={handleChangeHari}>
-              <option value={"monday"}>Senin</option>
-              <option value={"tuesday"}>Selasa</option>
-              <option value={"wednesday"}>Rabu</option>
-              <option value={"thursday"}>Kamis</option>
-              <option value={"friday"}>Jumat</option>
-            </select>
-          </FormControl>
-          <div className="btn-container">
-            <Button variant="contained" id="btn-save" onClick={handleClose} disabled={submitable === false} data-cy="btn-submit">
-              Simpan
-            </Button>
-          </div>
-        </Box>
+                "& .MuiFormHelperText-root": {
+                  fontSize: "16px",
+                  fontWeight: "400",
+                  display: "flex",
+                  alignItems: "center",
+                  marginInline: "0",
+                },
+              }}
+              id="outlined-basic"
+              name="matkul"
+              value={matkul}
+              onChange={handleChangeMatkul}
+              variant="outlined"
+              placeholder="Masukkan Mata Kuliah"
+            />
+            <Typography id="modal-modal-description-2" className="modal-title" htmlFor="days">
+              Pilih Hari
+            </Typography>
+
+            <FormControl
+              htmlFor="days"
+              fullWidth
+              data-cy="form-day"
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  marginInline: "35px",
+                },
+                "& .MuiOutlinedInput-root.Mui-focused": {
+                  "& > fieldset": {
+                    borderColor: "rgba(217, 1, 156, 1)",
+                  },
+                  background: "rgba(255, 255, 255, 1)",
+                },
+                "& .MuiFormHelperText-root": {
+                  fontSize: "16px",
+                  fontWeight: "400",
+                  display: "flex",
+                  alignItems: "center",
+                  marginInline: "0",
+                },
+              }}
+            >
+              <select name="hari" id="days" value={hari} onChange={handleChangeHari}>
+                <option value={"monday"}>Senin</option>
+                <option value={"tuesday"}>Selasa</option>
+                <option value={"wednesday"}>Rabu</option>
+                <option value={"thursday"}>Kamis</option>
+                <option value={"friday"}>Jumat</option>
+              </select>
+            </FormControl>
+            <div className="btn-container">
+              <Button variant="contained" id="btn-save" disabled={submitable === false} data-cy="btn-submit" type="submit">
+                Simpan
+              </Button>
+            </div>
+          </Box>
+        </form>
       </Modal>
     </div>
   );
