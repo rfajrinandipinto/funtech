@@ -93,8 +93,8 @@ const ScheduleDetail = () => {
         )}
       </div>
 
-      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" data-cy="detail-form">
-        <Box sx={style}>
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+        <Box sx={style} data-cy="detail-form">
           <div className="modal-title">
             <h3>Tambah Mata Kuliah</h3>
             <Button onClick={handleClose} data-cy="close-modal">
