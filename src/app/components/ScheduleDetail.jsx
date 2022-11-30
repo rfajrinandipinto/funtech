@@ -103,7 +103,13 @@ const ScheduleDetail = () => {
           </div>
           <div className="modal-content">
             <p>Mata Kuliah</p>
-            <TextField id="outlined-basic" sx={{ width: "100%" }} data-cy="form-matkul" />
+            <TextField
+              id="outlined-basic"
+              sx={{ width: "100%" }}
+              inputProps={{
+                "data-cy": "form-matkul",
+              }}
+            />
           </div>
           <div className="modal-btn">
             <Button variant="contained" id="btn-add-new-modal" data-cy="btn-submit" type="submit" onClick={handleOpen}>
