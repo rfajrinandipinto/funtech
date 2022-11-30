@@ -47,6 +47,7 @@
   background: #ffffff;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+  display: flex;
 }
 
 .modal-title {
@@ -69,4 +70,8 @@
 
 .modal-btn {
   display: flex;
+}
+
+.action-icon {
+  margin-left: auto;
 }
