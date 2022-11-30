@@ -15,6 +15,8 @@ import Modal from "@mui/material/Modal";
 const ScheduleDetail = () => {
   const [data, setData] = useState(null);
   const [email, setEmail] = useState("");
+  const [matkul, setMatkul] = useState("");
+  const [submitable, setSubmitable] = useState(false);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -39,6 +41,21 @@ const ScheduleDetail = () => {
       break;
   }
 
+  const handleChangeMatkul = (event) => {
+    if (event.target.value !== "" && event.target.value !== null) {
+      setSubmitable(true);
+    } else {
+      setSubmitable(false);
+    }
+    setMatkul(event.target.value);
+  };
+
+  const fetchData = async () => {
+    const listData = await axios(`https://getjadwal.api.devcode.gethired.id/schedule?email=${email}&day=${day}`);
+
+    setData(listData.data);
+  };
+
   useEffect(() => {
     const email = ReactSession.get("email");
     if (email) {
@@ -53,6 +70,32 @@ const ScheduleDetail = () => {
 
     fetchData();
   }, []);
+
+  let handleSubmit = async (e) => {
+    e.preventDefault();
+    handleClose();
+    setSubmitable;
+    try {
+      let res = await fetch("https://getjadwal.api.devcode.gethired.id/schedule?email=" + email, {
+        method: "POST",
+        body: JSON.stringify({
+          title: matkul,
+          day: day,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.status === 201) {
+        console.log("berhasil");
+        fetchData();
+      } else {
+        console.log("error");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const style = {
     position: "absolute",
@@ -109,10 +152,11 @@ const ScheduleDetail = () => {
               inputProps={{
                 "data-cy": "form-matkul",
               }}
+              onChange={handleChangeMatkul}
             />
           </div>
           <div className="modal-btn">
-            <Button variant="contained" id="btn-add-new-modal" data-cy="btn-submit" type="submit" onClick={handleOpen}>
+            <Button variant="contained" id="btn-add-new-modal" data-cy="btn-submit" type="submit" disabled={submitable === false} onClick={handleSubmit}>
               Simpan
             </Button>
           </div>
