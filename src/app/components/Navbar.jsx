@@ -27,9 +27,11 @@ const Navbar = (props) => {
         return (
           <div className="nav-content">
             <h1>GetJadwal</h1>
-            <Button variant="contained" id="btnLogout" data-cy="btn-logout">
-              Check out | {email}
-            </Button>
+            <a href="/">
+              <Button variant="contained" id="btnLogout" data-cy="btn-logout">
+                Check out | {email}
+              </Button>
+            </a>
           </div>
         );
     }

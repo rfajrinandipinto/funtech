@@ -74,7 +74,7 @@ const ScheduleDetail = () => {
           <ArrowBackIosIcon data-cy="btn-back"></ArrowBackIosIcon>
         </a>
         <p data-cy="detail-title">{hari}</p>
-        <Button variant="contained" id="btn-add-new" data-cy="btn-create-schedule" type="submit" onClick={handleOpen}>
+        <Button variant="contained" id="btn-add-new" data-cy="btn-create-schedule" onClick={handleOpen}>
           + Tambah Mata Kuliah
         </Button>
       </div>
@@ -93,7 +93,7 @@ const ScheduleDetail = () => {
         )}
       </div>
 
-      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" data-cy="detail-form">
         <Box sx={style}>
           <div className="modal-title">
             <h3>Tambah Mata Kuliah</h3>
