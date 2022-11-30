@@ -6,10 +6,19 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useState, useEffect } from "react";
 import { ReactSession } from "react-client-session";
 import axios from "axios";
+import TextField from "@mui/material/TextField";
+import Close from "@mui/icons-material/Close";
+
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 const ScheduleDetail = () => {
   const [data, setData] = useState(null);
   const [email, setEmail] = useState("");
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   let { day } = useParams();
   switch (day) {
@@ -45,6 +54,19 @@ const ScheduleDetail = () => {
     fetchData();
   }, []);
 
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: 24,
+    background: "#FFFFFF",
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+    borderRadius: "12px",
+    padding: "24px 35px;",
+    width: "830px;",
+  };
+
   return (
     <div>
       <div className="header">
@@ -52,7 +74,7 @@ const ScheduleDetail = () => {
           <ArrowBackIosIcon data-cy="btn-back"></ArrowBackIosIcon>
         </a>
         <p data-cy="detail-title">{hari}</p>
-        <Button variant="contained" id="btn-add-new" data-cy="btn-create-schedule" type="submit">
+        <Button variant="contained" id="btn-add-new" data-cy="btn-create-schedule" type="submit" onClick={handleOpen}>
           + Tambah Mata Kuliah
         </Button>
       </div>
@@ -70,6 +92,26 @@ const ScheduleDetail = () => {
           })
         )}
       </div>
+
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+        <Box sx={style}>
+          <div className="modal-title">
+            <h3>Tambah Mata Kuliah</h3>
+            <Button onClick={handleClose} data-cy="close-modal">
+              <Close></Close>
+            </Button>
+          </div>
+          <div className="modal-content">
+            <p>Mata Kuliah</p>
+            <TextField id="outlined-basic" sx={{ width: "100%" }} data-cy="form-matkul" />
+          </div>
+          <div className="modal-btn">
+            <Button variant="contained" id="btn-add-new-modal" data-cy="btn-submit" type="submit" onClick={handleOpen}>
+              Simpan
+            </Button>
+          </div>
+        </Box>
+      </Modal>
     </div>
   );
 };
