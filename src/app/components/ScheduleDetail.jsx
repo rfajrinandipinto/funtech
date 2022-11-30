@@ -190,7 +190,6 @@ const ScheduleDetail = () => {
           <div className="modal-content">
             <p>Mata Kuliah</p>
             <TextField
-              id="outlined-basic"
               sx={{ width: "100%" }}
               inputProps={{
                 "data-cy": "form-matkul",
@@ -199,7 +198,7 @@ const ScheduleDetail = () => {
             />
           </div>
           <div className="modal-btn">
-            <Button variant="contained" id="btn-add-new-modal" data-cy="btn-submit" type="submit" disabled={submitable === false} onClick={handleSubmit}>
+            <Button variant="contained" data-cy="btn-submit" type="submit" disabled={submitable === false} onClick={handleSubmit}>
               Simpan
             </Button>
           </div>
@@ -216,10 +215,10 @@ const ScheduleDetail = () => {
           </div>
 
           <div className="modal-btn">
-            <Button variant="contained" id="btn-add-new-modal" data-cy="btn-close" type="submit" onClick={handleCloseDelete}>
+            <Button variant="contained" data-cy="btn-close" type="submit" onClick={handleCloseDelete}>
               Simpan
             </Button>
-            <Button variant="contained" id="btn-add-new-modal" data-cy="btn-submit" type="submit" onClick={handleSubmit}>
+            <Button variant="contained" data-cy="btn-submit" type="submit" onClick={handleSubmit}>
               Simpan
             </Button>
           </div>
